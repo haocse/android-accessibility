@@ -10,9 +10,9 @@ android {
         versionCode Integer.parseInt(VERSION_CODE)
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        jackOptions {
-            enabled true
-        }
+//        jackOptions {
+//            enabled true
+//        }
     }
     buildTypes {
         release {

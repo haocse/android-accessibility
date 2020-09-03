@@ -33,6 +33,8 @@ public class MyAccessibilityService extends AccessibilityService {
         Log.d(TAG, "sourcePackageName:" + sourcePackageName);
         Log.d(TAG, "parcelable:" + accessibilityEvent.getText().toString());
 
+
+
         windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
 
       /*  if (accessibilityEvent.getEventType() == AccessibilityEvent.CONTENT_CHANGE_TYPE_CONTENT_DESCRIPTION) {
