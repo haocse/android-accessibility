@@ -2,7 +2,9 @@ package com.accessibilityexample.controllers;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.PixelFormat;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,7 +12,10 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -18,11 +23,13 @@ import com.accessibilityexample.R;
 import com.accessibilityexample.interfaces.ListItemAction;
 import com.accessibilityexample.models.InnerSounds;
 import com.accessibilityexample.networktask.DownloadTask;
+import com.accessibilityexample.ui.DrawView;
 import com.accessibilityexample.ui.adapters.SearchItemsListAdapter;
 import com.accessibilityexample.utils.NetworkTask;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by sotsys-014 on 5/10/16.
@@ -44,9 +51,11 @@ public class WindowPositionController implements ListItemAction, NetworkTask.Net
 
 
     private WindowTouchController windowTouchController;
+//    AccessibilityNodeInfo accessibilityNodeInfo;
 
 
     public WindowPositionController(WindowManager windowManager, Context context) {
+//        this.accessibilityNodeInfo = accessibilityNodeInfo;
         this.windowManager = windowManager;
         this.context = context;
         onCreate();
@@ -90,11 +99,33 @@ public class WindowPositionController implements ListItemAction, NetworkTask.Net
                     searchedItemView.setVisibility(searchedItemView.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
                 }
             });
-            searchedItemView.setVisibility(View.GONE);
-            mainContainer.addView(searchedItemView);
+            // check all children
+
+
+//            mainContainer.removeAllViews();
+//            for (int i = 0; i < this.accessibilityNodeInfo.getChildCount(); i++) {
+//                if (this.accessibilityNodeInfo.getChild(i) != null) {
+//                    Rect rect = new Rect();
+//                    this.accessibilityNodeInfo.getChild(i).getBoundsInScreen(rect);
+//                    Log.d(">>>", "accessibilityNodeInfo");
+//                    DrawView drawView = new DrawView(context, rect);
+////                    drawView.setBackgroundColor(Color.YELLOW);
+//
+//                    try {
+//                        mainContainer.addView(drawView);
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//
+//            }
+
+//            searchedItemView.setVisibility(View.GONE);
+//            mainContainer.addView(searchedItemView);
             try {
-                mainContainer.addView(iconizedWindowView);
+//                mainContainer.addView(iconizedWindowView);
                 windowManager.addView(mainContainer, params);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -115,7 +146,113 @@ public class WindowPositionController implements ListItemAction, NetworkTask.Net
 
         }
 
+
+
     }
+
+    public void visibleOnScreen(AccessibilityNodeInfo node) {
+
+        if (node == null) return;
+
+
+        if (node.getChildCount() == 0) {
+//            Rect rect = new Rect();
+//            node.getBoundsInScreen(rect);
+//            node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
+
+//            System.out.println("1º - Node Information: " + node.toString());
+            // TextView and EditText...
+            System.out.println("1º getClassName "  + node.getClassName());
+            System.out.println("1º text "  + node.getText());
+            Rect rect = new Rect();
+            node.getBoundsInScreen(rect);
+            System.out.println("1º text "  +rect.toString());
+//            if (node.getClassName().equals("android.widget.TextView")) System.out.println("1º text "  + node.getText());
+//            if (node.getClassName().equals("android.widget.TextView")) System.out.println("1º text "  + node.getText());
+//            if (node.getClassName().equals("android.widget.TextView")) System.out.println("1º text "  + node.getText());
+//            CharSequence text = node.getText();
+//            CharSequence description = node.getContentDescription();
+//            CharSequence className = node.getClassName();
+//            String viewId = node.getViewIdResourceName();
+//
+////            List<AccessibilityNodeInfo> nodeInfo = node.findAccessibilityNodeInfosByViewId(viewId);
+////            for (int i = 0; i < nodeInfo.size(); i++) {
+////                System.out.println(">>> " + nodeInfo.toString());
+////            }
+//
+//
+//
+//            System.out.println("| "
+//                    + "text: " + text + " \t"
+//                    + "description: " + description + " \t"
+//                    + String.format("%-40s", "ID: " + viewId) + " \t"
+//                    + String.format("%-40s", "class: " + className) + " \t"
+//                    + String.format("%-30s", "location: " + rect) + " \t");
+
+//            if (buttonRect.contains(x, y)) {
+//                // Maybe we need to think if a large view covers item?
+//                node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
+//                System.out.println("1º - Node Information: " + node.toString());
+//            }
+        } else {
+//            Rect rect = new Rect();
+//            node.getBoundsInScreen(rect);
+//
+//            CharSequence text = node.getText();
+//            CharSequence description = node.getContentDescription();
+//            CharSequence className = node.getClassName();
+//            String viewId = node.getViewIdResourceName();
+//
+////            List<AccessibilityNodeInfo> nodeInfo = node.findAccessibilityNodeInfosByViewId(viewId);
+////            for (int i = 0; i < nodeInfo.size(); i++) {
+////                System.out.println(">>> " + nodeInfo.toString());
+////            }
+//
+//            System.out.println("| "
+//                    + "text: " + text + " \t"
+//                    + "description: " + description + " \t"
+//                    + String.format("%-40s", "ID: " + viewId) + " \t"
+//                    + String.format("%-40s", "class: " + className) + " \t"
+//                    + String.format("%-30s", "location: " + rect) + " \t");
+
+//            if (buttonRect.contains(x, y)) {
+//                // Maybe we need to think if a large view covers item?
+//                node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
+//                System.out.println("2º - Node Information: " + node.toString());
+//            }
+            System.out.println("2º - Node Information: " + node.toString());
+            if (node.getClassName().equals("android.widget.TextView")) System.out.println("2º - text "  + node.getText());
+            for (int i = 0; i < node.getChildCount(); i++) {
+
+                visibleOnScreen(node.getChild(i));
+            }
+        }
+    }
+
+//    public static void clickAtPosition(int x, int y, AccessibilityNodeInfo node) {
+//        if (node == null) return;
+//
+//        if (node.getChildCount() == 0) {
+//            Rect buttonRect = new Rect();
+//            node.getBoundsInScreen(buttonRect);
+//            if (buttonRect.contains(x, y)) {
+//                // Maybe we need to think if a large view covers item?
+//                node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
+//                System.out.println("1º - Node Information: " + node.toString());
+//            }
+//        } else {
+//            Rect buttonRect = new Rect();
+//            node.getBoundsInScreen(buttonRect);
+//            if (buttonRect.contains(x, y)) {
+//                // Maybe we need to think if a large view covers item?
+//                node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
+//                System.out.println("2º - Node Information: " + node.toString());
+//            }
+//            for (int i = 0; i < node.getChildCount(); i++) {
+//                clickAtPosition(x, y, node.getChild(i));
+//            }
+//        }
+//    }
 
     private void initWindowTouchListener(WindowManager.LayoutParams params) {
         windowTouchController = new WindowTouchController(params, mainContainer, windowManager);
@@ -150,7 +287,10 @@ public class WindowPositionController implements ListItemAction, NetworkTask.Net
 
     }
 
-    public void notifyDatasetChanged(String searchString, String currntApplicationPackage) {
+    public void notifyDatasetChanged(String searchString, String currntApplicationPackage, AccessibilityNodeInfo accessibilityNodeInfo) {
+        System.out.println("1----");
+        System.out.println("1----" + accessibilityNodeInfo.getPackageName());
+        visibleOnScreen(accessibilityNodeInfo);
         if ((searchString.length() == 0 || searchString.equalsIgnoreCase("[]")) && mainContainer != null) {
             if (mainContainer != null)
                 windowManager.removeView(mainContainer);

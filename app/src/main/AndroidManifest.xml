@@ -22,6 +22,8 @@
         </activity>
 
         <service android:name=".Service.MyAccessibilityService"
+            android:enabled="true"
+            android:exported="true"
             android:label="@string/accessibility_service_label"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
             <intent-filter>

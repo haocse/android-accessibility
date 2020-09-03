@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
-    android:description="@string/accessibility_service_description"
-    android:packageNames="*"
+<accessibility-service
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:accessibilityEventTypes="typeAllMask"
-    android:accessibilityFlags="flagDefault"
     android:accessibilityFeedbackType="feedbackAllMask"
+    android:accessibilityFlags="flagDefault"
+    android:canRequestEnhancedWebAccessibility="true"
     android:notificationTimeout="100"
+    android:packageNames="@null"
     android:canRetrieveWindowContent="true"
-    android:canRequestFilterKeyEvents="true"
-    android:settingsActivity="" />
+    android:canRequestTouchExplorationMode="true"
+    />

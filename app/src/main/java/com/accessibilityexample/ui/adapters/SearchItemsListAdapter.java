@@ -29,10 +29,6 @@ public class SearchItemsListAdapter extends RecyclerView.Adapter<SearchItemsList
     private boolean isBig = false;
 
 
-
-
-
-
     public SearchItemsListAdapter(Context context, List<InnerSounds> itemList, ListItemAction listItemAction) {
         this.itemList = itemList;
         this.context = context;
